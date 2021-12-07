@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="unitTest-01-sum.xml" />
+	<munit:test name="unitTest-01-sum-demo2FlowTest" doc:id="5394166a-fa83-4c81-a190-1e8d23817dc6" description="Test">
+		<munit:behavior >
+			<set-payload value='{"a": 3,"b": 5}' doc:name="Set Payload" doc:id="d78fe38d-42b8-47a6-b6c2-2f32ddc576e9" mimeType="application/json"/>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to demo2Flow" doc:id="31554066-d15d-4a73-a097-035b874827f0" name="demo2Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="a2a3891d-06a0-499a-a6db-c06aa93211c7" expression="#[payload.sum]" is="#[MunitTools::equalTo(8)]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
